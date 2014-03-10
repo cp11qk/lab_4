@@ -1,0 +1,34 @@
+/*-------------------
+KENIX PO
+2434140
+LAB_4 [servo_code]
+
+Control the servo using the potentiometre
+-------------------*/
+#include <Servo.h> 
+
+Servo myservo;  
+
+//------Variables----- 
+int potPin = 0; 
+int potVal;   
+// 
+
+void setup() 
+{ 
+  Serial.begin(9600);
+  myservo.attach(8);  
+} //setup ends
+
+void loop() 
+{ 
+  potVal = analogRead(potPin);            
+  potVal = map(potVal, 0, 1023, 0, 179); //re-maps pot value to 180 degrees(179, 180 - 1 for 0)
+  myservo.write(potVal); 
+  //
+  Serial.println(potVal);  
+  //
+  delay(10);                           
+} //loop ends
+
+
